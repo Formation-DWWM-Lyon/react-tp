@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Travaux pratiques React
 
-## Available Scripts
+Nous aimerions créer un réseau social réservé aux développeurs. Nous avons plusieurs investisseurs potentiels, mais ils ne nous accorderont leur confiance que si nous pouvons leur présenter un prototype de notre idée! Ta mission, si tu l'acceptes: réaliser ce prototype en suivant les instructions données par notre chef de projet.
 
-In the project directory, you can run:
+## 1. Récupérer les données
 
-### `yarn start`
+Une autre équipe s'occupe de la partie _back-end_ de l'application. En attendant que leur travail soit exploitable, tu peux utiliser l'API de [randomuser.me](https://randomuser.me/documentation). Tu peux utiliser l'_endpoint_ suivant comme référence:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`https://randomuser.me/api/?page=1&results=10&seed=abc&nat=fr`
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- **results** permet de choisir combien de résultats renverra la requête (dans cet exemple, 10),
+- **page** permet d'"avancer" ou de "reculer" dans les résultats (par exemple, avoir les résultats de 11 à 20, de 21 à 30...). Ne fonctionne qu'avec **seed**,
+- **seed** permet de définir une chaîne de caractères arbitraire qui sera utilisée comme base pour générer les résultats. Donner une valeur fixe à **seed** permet donc d'avoir toujours les mêmes résultats,
+- **nat** permet d'avoir uniquement des résultats d'une certaine nationalité (dans cet exemple, français).
 
-### `yarn test`
+Tu dois commencer par récupérer une série de personnes dans l'API et afficher leur nom dans une liste.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### BONUS
 
-### `yarn build`
+Ajouter un bouton qui permet de charger une nouvelle liste de personnes (sans recharger la page), pour simuler la mise à jour de l'affichage. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Penser à enlever le paramètre **seed** de la requête, sinon il ne se passera rien!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### BONUS 2
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Utiliser l'objet **Date** pour générer une nouvelle valeur de **seed** toutes les minutes, afin de simuler l'arrivée de nouveaux profils sur l'application.
 
-### `yarn eject`
+## 2. Faire une carte de présentation pour chaque personne
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Au lieu d'afficher juste leur nom, nous aimerions avoir une carte qui présente pour chaque personne (au moins) son nom, sa photo, sa ville, son sexe.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Note: tu peux t'aider de `react-bootstrap` qui est déjà incluse dans le code.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### BONUS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Les cartes pourraient être affichées dans une grille _responsive_ qui s'adapte aux mobiles.
 
-## Learn More
+## 3. Afficher le profil complet d'une personne
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Créer une page "profil" sur laquelle toutes les informations relatives à une personne apparaissent. Rajouter également, dans les cartes de présentation, un bouton "Voir le profil" qui permet d'accéder à cette page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> Attention: l'API est faite de telle manière qu'il faut faire exactement la même requête pour avoir les mêmes résultats, même si on n'a besoin que d'une seule personne. Il faut donc fournir le numéro de page sur laquelle une personne apparaît + son index dans la page pour pouvoir l'identifier.
 
-### Code Splitting
+### BONUS
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Au lieu d'afficher directement toutes les informations, la page de profil propose des onglets qui permettent d'afficher les informations par thématique (adresse, date de naissance, téléphone, etc.).
 
-### Analyzing the Bundle Size
+## 4. Naviguer entre différentes pages de résultats
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Ajouter un bouton "page suivante" et un bouton "page précédente" qui permettent d'afficher les 10 personnes suivantes ou précédentes. Si nous sommes sur la première page, le bouton "page précédente" ne doit pas avoir d'effet.
 
-### Making a Progressive Web App
+### BONUS
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Lorsqu'on est sur la première page, le bouton "page précédente" apparaît en grisé et n'est pas cliquable.
 
-### Advanced Configuration
+## 5. Poster des commentaires sur un profil
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Sur la page profil, rajouter un formulaire qui permet de poster un commentaire. Une fois validé, ce commentaire est ajouté à la liste de commentaires sur le profil.
 
-### Deployment
+### BONUS
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Afin de simuler un utilisateur authentifié, utiliser une requête avec un **seed** différent (et fixe, si vous avez fait les bonus de l'étape 1) qui va chercher une seule personne. Afficher le nom et la photo de cette personne en haut de la page, et l'afficher à nouveau devant chaque commentaire pour montrer qui en est l'auteur.
 
-### `yarn build` fails to minify
+## SUPER BONUS
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Rajouter un champ qui permet de filtrer les profils parmi les 10 résultats sur une même page (voire plusieurs champs pour filtrer selon différentes critères)
+- Faire une liste déroulante qui permet de sélectionner combien de résultats on souhaite avoir dans chaque page
+- Faire une liste déroulante qui permet de sélectionner la nationalité des profils générés
+- Laisser libre cours à votre imagination pour nous surprendre...
