@@ -8,7 +8,12 @@ export default class DataContainer extends Component {
   }
 
   componentDidMount = () => {
-    Axios.get('https://randomuser.me/api/?page=2&results=10&seed=romain&nat=fr')
+    this.fetchData();
+  }
+
+  fetchData = () => {
+    this.setState({ data: null });
+    Axios.get('https://randomuser.me/api/?page=2&results=10&nat=fr')
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
   }
@@ -21,7 +26,10 @@ export default class DataContainer extends Component {
     }
 
     return (
-      <PeopleList people={data.results} />
+      <PeopleList
+        people={data.results}
+        fetchData={this.fetchData}
+      />
     );
   }
 }
