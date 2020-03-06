@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { DataContainer } from './containers';
 
 function App() {
   return (
     <Container>
-      Votre code ici!
+      <DataContainer />
     </Container>
   );
 }
