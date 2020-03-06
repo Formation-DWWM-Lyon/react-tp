@@ -12,8 +12,11 @@ export default class DataContainer extends Component {
   }
 
   fetchData = () => {
+    const now = new Date();
+    const seed = now.getMinutes();
+
     this.setState({ data: null });
-    Axios.get('https://randomuser.me/api/?page=2&results=10&nat=fr')
+    Axios.get(`https://randomuser.me/api/?page=2&seed=${seed}&results=10&nat=fr`)
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
   }
