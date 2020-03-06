@@ -56,7 +56,7 @@ export default class DataContainer extends Component {
 
   render = () => {
     const { type } = this.props;
-    const { data } = this.state;
+    const { data, page } = this.state;
 
     if (!data) {
       return <div>Loading...</div>;
@@ -68,6 +68,7 @@ export default class DataContainer extends Component {
       <ComponentName
         people={data.results}
         methods={this.methods}
+        page={page}
       />
     );
   }

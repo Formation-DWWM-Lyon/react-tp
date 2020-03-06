@@ -5,7 +5,7 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { ProfileCard } from '.';
 import { Link } from 'react-router-dom';
 
-const PeopleList = ({ people, methods }) =>
+const PeopleList = ({ people, methods, page }) =>
   <div>
     <Button variant="outline-primary" onClick={methods.fetchData}>
       <FontAwesomeIcon icon={faSyncAlt} />
@@ -20,7 +20,7 @@ const PeopleList = ({ people, methods }) =>
       )}
     </ul>
     <Pagination>
-      <Pagination.Prev onClick={methods.prevPage} />
+      <Pagination.Prev onClick={methods.prevPage} disabled={page === 1} />
       <Pagination.Next onClick={methods.nextPage} />
     </Pagination>
   </div>
