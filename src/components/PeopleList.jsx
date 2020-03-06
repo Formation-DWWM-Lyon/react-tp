@@ -1,13 +1,13 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Pagination } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { ProfileCard } from '.';
 import { Link } from 'react-router-dom';
 
-const PeopleList = ({ people, fetchData }) =>
+const PeopleList = ({ people, methods }) =>
   <div>
-    <Button variant="outline-primary" onClick={fetchData}>
+    <Button variant="outline-primary" onClick={methods.fetchData}>
       <FontAwesomeIcon icon={faSyncAlt} />
     </Button>
     <ul className="grid mt-4">
@@ -19,6 +19,10 @@ const PeopleList = ({ people, fetchData }) =>
         </li>
       )}
     </ul>
+    <Pagination>
+      <Pagination.Prev onClick={methods.prevPage} />
+      <Pagination.Next onClick={methods.nextPage} />
+    </Pagination>
   </div>
 ;
 
