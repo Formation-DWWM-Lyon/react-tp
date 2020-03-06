@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { PeopleList } from '../components';
 import { ProfilePage } from '../pages';
+import commentData from '../data';
 
 const componentByType = {
   list: PeopleList,
@@ -11,6 +12,7 @@ const componentByType = {
 export default class DataContainer extends Component {
   state = {
     data: null,
+    commentData,
     page: 1,
   }
 
@@ -48,10 +50,20 @@ export default class DataContainer extends Component {
     this.setState({ page: page - 1 });
   }
 
+  addComment = (personIndex, text) => {
+    const { commentData } = this.state;
+    commentData[personIndex].comments.push({
+      text,
+      date: new Date(),
+    });
+    this.setState({ commentData });
+  }
+
   methods = {
     fetchData: this.fetchData,
     nextPage: this.nextPage,
     prevPage: this.prevPage,
+    addComment: this.addComment,
   }
 
   render = () => {

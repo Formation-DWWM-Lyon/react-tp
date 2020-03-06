@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { ProfileCard } from '../components';
+import { ProfileCard, CommentList, CommentForm } from '../components';
 import { Button } from 'react-bootstrap';
 
-const Profile = ({ people, match }) => {
+const Profile = ({ people, match, methods }) => {
   const { id } = match.params;
   const person = people[id];
 
@@ -16,6 +16,8 @@ const Profile = ({ people, match }) => {
         <ProfileCard {...person} />
         <div>
           Informations supplémentaires sur la personne..
+          <CommentList personIndex={id} />
+          <CommentForm personIndex={id} addComment={methods.addComment} />
         </div>
       </div>
     </div>
