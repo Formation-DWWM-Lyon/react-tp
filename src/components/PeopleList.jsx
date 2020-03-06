@@ -2,15 +2,18 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { ProfileCard } from '.';
 
 const PeopleList = ({ people, fetchData }) =>
   <div>
     <Button variant="outline-primary" onClick={fetchData}>
       <FontAwesomeIcon icon={faSyncAlt} />
     </Button>
-    <ul>
+    <ul className="grid mt-4">
       {people.map( (person, index) =>
-        <li key={index}>{person.name.first} {person.name.last}</li>
+        <li key={index}>
+          <ProfileCard {...person} />
+        </li>
       )}
     </ul>
   </div>
