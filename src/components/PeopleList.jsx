@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const PeopleList = ({ people, methods, page }) =>
   <div>
-    <Button variant="outline-primary" onClick={methods.fetchData}>
+    <Button variant="outline-primary" onClick={() => methods.fetchData()}>
       <FontAwesomeIcon icon={faSyncAlt} />
     </Button>
     <ul className="grid mt-4">
