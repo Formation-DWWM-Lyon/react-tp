@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { PeopleList } from '../components';
+import { ProfilePage } from '../pages';
+
+const componentByType = {
+  list: PeopleList,
+  profile: ProfilePage,
+}
 
 export default class DataContainer extends Component {
   state = {
@@ -22,14 +28,17 @@ export default class DataContainer extends Component {
   }
 
   render = () => {
+    const { type } = this.props;
     const { data } = this.state;
 
     if (!data) {
       return <div>Loading...</div>;
     }
 
+    const ComponentName = componentByType[type]
+
     return (
-      <PeopleList
+      <ComponentName
         people={data.results}
         fetchData={this.fetchData}
       />
