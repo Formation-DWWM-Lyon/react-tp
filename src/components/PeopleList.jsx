@@ -8,7 +8,7 @@ const PeopleList = ({ people, fetchData }) =>
     </Button>
     <ul>
       {people.map( (person, index) =>
-        <li>{person.name.first} {person.name.last}</li>
+        <li key={index}>{person.name.first} {person.name.last}</li>
       )}
     </ul>
   </div>
